@@ -2,6 +2,7 @@
   <div class="row">
     <div class="col-md-6 mx-auto">
       <h1>Editing Group</h1>
+      <%= render 'layouts/errors', obj: @group %>
       <%= form_with model: @group do |f| %>
         <%= f.label :name, "グループ名", class: "mt-3" %>
         <%= f.text_field :name, class: "form-control" %>
