@@ -10,6 +10,7 @@ class GroupsController < ApplicationController
   def show
     @book = Book.new
     @group = Group.find(params[:id])
+    @owner = User.find(@group.owner_id)
   end
 
   def new
@@ -39,12 +40,28 @@ class GroupsController < ApplicationController
     end
   end
 
+  def join_group
+    @group_user = GroupUser.new
+    @group = Group.find(params[:group_id])
+    @group_user.group_id = @group.id
+    @group_user.user_id = current_user.id
+    @group_user.save
+    redirect_to groups_path
+  end
+
+  def leave_group
+    @group = Group.find(params[:group_id])
+    group_user = current_user.group_users.find_by(group_id: @group.id)
+    group_user.destroy
+    redirect_to groups_path
+  end
+
   private
 
   def group_params
     params.require(:group).permit(:name, :introduction, :owner_id, :group_image)
   end
-  
+
   def ensure_correct_user
     @group = Group.find(params[:id])
     unless @group.owner_id == current_user.id

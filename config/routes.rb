@@ -14,7 +14,10 @@ Rails.application.routes.draw do
     get 'followings' => 'relationships#followings', as: 'followings'
     get 'followers' => 'relationships#followers', as: 'followers'
   end
-  resources :groups
+  resources :groups do
+    post "join_group" => "groups#join_group"
+    delete "leave_group" => "groups#leave_group"
+  end
 
   get 'search' => 'searches#search'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
