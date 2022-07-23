@@ -1,9 +1,10 @@
 class GroupMailer < ApplicationMailer
-  
-  def notice_event
-    @group = params[:group]
-    @title = params[:title]
-    @body = params[:body]
-    mail(to: @user.email, subject: @title)
+
+  def notice_event(title, body, group_users, group_name)
+    @group_users = group_users
+    @group_name = group_name
+    @title = title
+    @body = body
+    mail bcc: group_users.pluck(:email), subject: title
   end
 end
