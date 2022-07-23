@@ -55,6 +55,13 @@ class GroupsController < ApplicationController
     group_user.destroy
     redirect_to groups_path
   end
+  
+  def mail_event
+    @group = params[:group]
+    @title = params[:title]
+    @body = params[:body]
+    GroupMailer.with(user: @user).notice_event.deliver_later
+  end
 
   private
 
