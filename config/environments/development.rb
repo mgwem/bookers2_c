@@ -76,4 +76,8 @@ Rails.application.configure do
   # config.action_cable.disable_request_forgery_protection = true
   config.hosts << "74c7618f7e1c4b52a2a2a4c8ff1ca8f4.vfs.cloud9.us-east-1.amazonaws.com"
   # エラーが出たので上の一行を追加
+
+  config.action_mailer.delivery_method = :letter_opener
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.default_url_options = { host: '74c7618f7e1c4b52a2a2a4c8ff1ca8f4.vfs.cloud9.us-east-1.amazonaws.com' }
 end
