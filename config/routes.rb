@@ -17,6 +17,8 @@ Rails.application.routes.draw do
   resources :groups do
     post "join_group" => "groups#join_group"
     delete "leave_group" => "groups#leave_group"
+    get "new_mail" => "groups#new_mail"
+    get "mail_event" => "groups#mail_event"
   end
 
   get 'search' => 'searches#search'

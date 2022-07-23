@@ -55,18 +55,18 @@ class GroupsController < ApplicationController
     group_user.destroy
     redirect_to groups_path
   end
-  
+
   def new_mail
-    @group = Group.find(params[:id])
+    @group = Group.find(params[:group_id])
   end
-  
+
   def mail_event
     @group = Group.find(params[:group_id])
     @group_users = @group.users
     @group_name = @group.name
     @title = params[:title]
-    @body = params[:body]
-    GroupMailer.notice_event(@title, @body, @group_users, @group_name).deliver
+    @content = params[:content]
+    GroupMailer.notice_event(@title, @content, @group_users, @group_name).deliver
   end
 
   private

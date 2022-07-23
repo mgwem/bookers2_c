@@ -1,3 +1,3 @@
 <h2><%= @group_name %>の皆さん</h2>
 <p>グループオーナーからイベントの通知です。</p>
-<p><%= @body %></p>
+<p><%= safe_join(@content.split("\n"),tag(:br)) %></p>

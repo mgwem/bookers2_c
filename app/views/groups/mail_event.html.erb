@@ -1,0 +1,15 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 mx-auto">
+      <h2>送信が完了しました</h2>
+      <p>内容は以下の通りです。</p>
+      <p>[タイトル]</p>
+      <p class="font-weight-bold"><%= @title %></p>
+      <p>[本文]</p>
+      <p class="font-weight-bold"><%= safe_join(@content.split("\n"),tag(:br)) %></p>
+      <div class="my-5">
+        <%= link_to "look mail", letter_opener_web_path %>
+      </div>
+    </div>
+  </div>
+</div>
